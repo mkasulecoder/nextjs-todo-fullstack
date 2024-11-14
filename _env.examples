@@ -1,3 +1,4 @@
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=<you-key>
 CLERK_SECRET_KEY=<your-key>
+NEXT_PUBLIC_MONGO_DB_URL=<collection-uri>
 NEXT_PUBLIC_API=<your-url>

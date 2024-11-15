@@ -34,7 +34,7 @@ const Page  = async () => {
         // Fetch Data
         const response : Response  = await fetch(api_url,
             {
-                method: 'GET',
+                cache: "no-store",
                 headers: {
                     'Authorization': `Bearer ${token}` // Include the token in the request
                 }
@@ -53,7 +53,7 @@ const Page  = async () => {
 
         return (
             <div className="bg-white w-full flex flex-col justify-center items-center py-4">
-                <div className="w-1/2 flex flex-col w-full justify-center items-center space-y-2 my-4">
+                <div className="w-3/4 flex flex-col w-full justify-center items-center space-y-2 my-4">
                     {Array.isArray(todos) && todos.length > 0 ? (
                         // sort todos in reverse order
                         [...todos].reverse().map((todo: TodoItem) => (<Todo key={todo._id} todo={todo}/>))

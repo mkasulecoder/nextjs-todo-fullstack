@@ -1,4 +1,7 @@
 import React from 'react';
+import DeleteButton from "@/app/components/DeleteButton/page";
+import EditButton from "@/app/components/EditButton/page";
+import {ClerkProvider} from "@clerk/nextjs";
 
 interface TodoItem {
     _id: string;
@@ -9,9 +12,10 @@ interface TodoItem {
 }
 
 const Todo = ({todo} : {todo : TodoItem}) => {
+
     return (
         <>
-            <div className="w-full flex flex-col border border-2 border-gray-400 drop-shadow-lg text-gray-900 p-2 rounded">
+            <div className="w-full flex flex-col border border-1 border-gray-200 drop-shadow-lg text-gray-900 p-2 rounded">
                 <h1 className="font-extrabold">{todo.title}</h1>
                 <p>{todo.description}</p>
                 <p>Time: {todo.time}</p>
@@ -27,11 +31,11 @@ const Todo = ({todo} : {todo : TodoItem}) => {
                         ): (
                         <button className="text-white w-1/3 font-semibold bg-green-700 rounded hover:bg-green-800">Mark as Completed</button>
                     )}
-                    <button className="text-white w-1/3 font-semibold bg-blue-700 rounded hover:bg-red-800">Edit
-                    </button>
-                    <button
-                        className="text-white w-1/3 font-semibold bg-red-700 rounded hover:bg-blue-800">Delete
-                    </button>
+                    <EditButton item_id={todo._id}/>
+                    <ClerkProvider dynamic>
+                        <DeleteButton id={todo._id}/>
+                    </ClerkProvider>
+
                 </div>
 
             </div>

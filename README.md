@@ -84,7 +84,7 @@ supatodo/
 │
 ├── pages/
 │   └── api/
-│       └── todos.ts
+│       └── index.ts
 │
 ├── lib/
 │   └── mongodb.ts

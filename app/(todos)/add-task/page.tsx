@@ -11,8 +11,7 @@ const Page = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [time, setTime] = useState('');
-    const [status, setStatus] = useState<boolean>(false);
-
+    const [status, setStatus] = useState(false);
     // Create the user
     const { userId, getToken } = useAuth();
 
@@ -39,7 +38,7 @@ const Page = () => {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ title, description, time, status, userId }),
+                    body: JSON.stringify({ title, description, time, status: status, userId }),
                 }
                 );
 
@@ -47,13 +46,13 @@ const Page = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            // console.log('Success:', data);
+            console.log('Success:', data);
 
             // Clear form fields after successful submission
             setTitle('');
             setDescription('');
             setTime('');
-            setStatus(false);
+            //setStatus(false);
 
             router.push('todos')
 
@@ -81,7 +80,7 @@ const Page = () => {
                 <input className="outline outline-neutral-200" type="datetime-local" id="time" name="time" value={time} onChange={(e) => setTime(e.target.value)} required />
 
                 <label htmlFor="status">Status:</label>
-                <select className="py-2" id="status" name="status" value={status.toString()} onChange={(e) => setStatus(e.target.value === "true")}>
+                <select className="py-2" id="status" name="status" value={status.toString()} onChange={(e) => setStatus(e.target.value === 'true')}>
                     <option  value="true">Completed</option>
                     <option value="false">Not Completed</option>
                 </select>
